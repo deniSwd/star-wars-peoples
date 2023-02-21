@@ -2,6 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Content, Text } from '../micro/microStyled'
 import { CustomSelect } from '../macro/CustomSelect'
+import { CharacterCard } from '../macro/CharacterCard'
 
 const CharactersWrap = styled.div`
   box-sizing: border-box;
@@ -25,6 +26,7 @@ export const Characters: FC = () => {
           60 Peoples for you to choose your favorite
         </Text>
         <CustomSelect/>
+        <CharacterCard/>
       </Content>
     </CharactersWrap>
   )
