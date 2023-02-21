@@ -1,13 +1,19 @@
 import styled from 'styled-components'
 import { NavLink } from 'react-router-dom'
 
-export const BetweenCenter = styled.div`
+interface PositionProps {
+  centerPosition?: boolean
+  column?:boolean
+}
+
+export const FlexPosition = styled.div<PositionProps>`
   display: flex;
-  justify-content: space-between;
+  flex-direction: ${(props) => props.column ? 'column' : 'row'};
+  justify-content: ${(props) => props.centerPosition ? 'center' : 'space-between'};
   align-items: center;
 `
 
-export const Content = styled(BetweenCenter)`
+export const Content = styled(FlexPosition)`
   width: 75%;
 `
 export const Logo = styled.div`
@@ -23,7 +29,7 @@ export const YodaBox = styled.img`
   max-height: 100%;
 `
 
-export const NavBox = styled(BetweenCenter)`
+export const NavBox = styled(FlexPosition)`
   height: 54px;
   width: 25%;
 `
@@ -48,13 +54,16 @@ interface TextProps {
   fontFamily: string
   color: string
   lineHeight: number
+  center?: boolean
 }
 
 export const Text = styled.div<TextProps>`
+  width: 100%;
   font-size: ${(props) => props.size}px;
   font-family: ${(props) => props.fontFamily}, sans-serif;
   color: ${(props) => props.color};
   line-height: ${(props) => props.lineHeight}px;
+  text-align: ${(props) => props.center ? 'center' : 'start'}
 `
 
 interface ButtonProps {
@@ -74,7 +83,7 @@ export const Button = styled(NavLink)<ButtonProps>`
   font-family: Nekst-Black, sans-serif;
   color: #212121;
   box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
-  background: ${(props)=>props.background};
+  background: ${(props) => props.background};
   cursor: pointer;
   text-decoration: none;
 `

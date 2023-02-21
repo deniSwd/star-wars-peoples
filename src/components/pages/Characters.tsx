@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content } from '../micro/microStyled'
+import { Content, Text } from '../micro/microStyled'
+import { CustomSelect } from '../macro/CustomSelect'
 
 const CharactersWrap = styled.div`
   box-sizing: border-box;
@@ -15,10 +16,15 @@ const CharactersWrap = styled.div`
 export const Characters: FC = () => {
   return (
     <CharactersWrap>
-      <Content>
-        <h1>
-          Characters
-        </h1>
+      <Content column >
+        <Text size={35}
+              lineHeight={41}
+              fontFamily={'Nekst-Black'}
+              color={'#000000'}
+              center>
+          60 Peoples for you to choose your favorite
+        </Text>
+        <CustomSelect/>
       </Content>
     </CharactersWrap>
   )
