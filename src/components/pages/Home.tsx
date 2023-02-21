@@ -1,6 +1,8 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content } from '../micro/microStyled'
+import { Content, YodaBox } from '../micro/microStyled'
+import { HomeDescription } from '../macro/HomeDescription'
+import yodaImage from '../../assets/images/BannerComplete.png'
 
 const HomeWrap = styled.div`
   box-sizing: border-box;
@@ -16,9 +18,8 @@ export const Home: FC = () => {
   return (
     <HomeWrap>
       <Content>
-        <h1>
-          Home Page
-        </h1>
+        <HomeDescription />
+        <YodaBox src={yodaImage} alt={'yoda'}/>
       </Content>
     </HomeWrap>
   )
