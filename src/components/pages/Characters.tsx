@@ -6,6 +6,7 @@ import { CharacterCard } from '../macro/CharacterCard'
 import { PopUp } from '../macro/PopUp'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { getStarWarsPeoples, selectResults } from '../../store/slices/starWarsPeoplesSlice'
+import { Preloader } from '../macro/Preloader'
 
 export const Characters: FC = () => {
   const dispatch = useAppDispatch()
@@ -35,6 +36,10 @@ export const Characters: FC = () => {
   useEffect(() => {
     dispatch(getStarWarsPeoples())
   }, [])
+
+  if(result.length === 0) {
+    return <Preloader/>
+  }
 
   return (
     <CharactersWrap>
