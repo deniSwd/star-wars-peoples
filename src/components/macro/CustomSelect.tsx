@@ -1,5 +1,30 @@
-import { FC, FormEvent, useState } from 'react'
+import { ComponentProps, FC, FormEvent, useState } from 'react'
 import styled from 'styled-components'
+
+interface CustomSelectProps {
+  onChange: (e: FormEvent<HTMLSelectElement>)=>void
+  value:string
+}
+
+export const CustomSelect: FC<CustomSelectProps> = ({ onChange,value}) => {
+
+  return (
+    <CustomSelectWrap>
+      <Label>Color eye:
+        <Select onChange={onChange} value={value}>
+          <Option>all</Option>
+          <Option>brown</Option>
+          <Option>red</Option>
+          <Option>blue</Option>
+          <Option>hazel</Option>
+          <Option>white</Option>
+          <Option>yellow</Option>
+          <Option>black</Option>
+        </Select>
+      </Label>
+    </CustomSelectWrap>
+  )
+}
 
 const CustomSelectWrap = styled.div`
   width: 100%;
@@ -31,21 +56,3 @@ const Option = styled.option `
   color: #212121;
   background: #ffffff;
 `
-
-export const CustomSelect: FC = () => {
-  const [selectValue, setSelectValue] = useState('all')
-  const onSelectChange = (e: FormEvent<HTMLSelectElement>) => setSelectValue(e.currentTarget.value)
-  return (
-    <CustomSelectWrap>
-      <Label>Color eye:
-        <Select onChange={onSelectChange} value={selectValue}>
-          <Option>all</Option>
-          <Option>brown</Option>
-          <Option>red</Option>
-          <Option>blue</Option>
-          <Option>white</Option>
-        </Select>
-      </Label>
-    </CustomSelectWrap>
-  )
-}

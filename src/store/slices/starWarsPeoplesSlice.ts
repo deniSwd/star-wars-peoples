@@ -1,38 +1,45 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
-import { RootState } from '../store'
+import { AppThunk, RootState } from '../store'
+import { getAllPeolple } from '../../api/peopleApi'
+import { CharacterType } from '../../MainTypes'
 
 export type starWarsPeoplesState = {
-  results: Array<string>
+  results: Array<CharacterType>
+  error: string | null
 }
 
 const initialState: starWarsPeoplesState = {
-  results: []
+  results: [],
+  error: null
 }
 
 export const starWarsPeoplesSlice = createSlice({
   name: 'starWarsPeoples',
   initialState,
   reducers: {
-    setResults: (state, action: PayloadAction<Array<string>>) => {
+    setResults: (state, action: PayloadAction< Array<CharacterType>>) => {
       state.results = action.payload
+    },
+    setError: (state, action: PayloadAction<string>) => {
+      state.error = action.payload
     }
   }
 })
 
-export const { setResults } = starWarsPeoplesSlice.actions
+export const { setResults, setError } = starWarsPeoplesSlice.actions
 
 export const selectResults = (state: RootState) => state.starWarsPeoples.results
+export const selectError = (state: RootState) => state.starWarsPeoples.error
 
-/*const getStarWarsPeoples = (): AppThunk =>
-  async (dispatch, getState) => {
-    const people: string = getState().myBook.category
+export const getStarWarsPeoples = (): AppThunk =>
+  async (dispatch) => {
     try {
-      dispatch(setResults([]))
-      const data = await userAPI.getPeople()
+      const data = await getAllPeolple()
+      dispatch(setResults(data))
     } catch (error: any) {
-      //if axios return error
+      //if return error
       dispatch(setError(error.message))
     }
-  }*/
+  }
 
 export default starWarsPeoplesSlice.reducer

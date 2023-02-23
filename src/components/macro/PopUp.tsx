@@ -3,12 +3,14 @@ import styled from 'styled-components'
 import { FlexPosition } from '../micro/microStyled'
 import genderImg from '../../assets/images/n-a.png'
 import { Name, NumParam, NumParameterBox, NumParametersWrap, StrParam, StrParametersWrap } from './CharacterCard'
+import { CharacterType } from '../../MainTypes'
 
 type PopUpProps = {
   closePopUp: () => void
+  char: CharacterType
 }
 
-export const PopUp: FC<PopUpProps> = ({ closePopUp }) => {
+export const PopUp: FC<PopUpProps> = ({ closePopUp,char }) => {
   return (
     <PopUpBack>
       <PopUpWrap>
@@ -18,16 +20,16 @@ export const PopUp: FC<PopUpProps> = ({ closePopUp }) => {
           <StrParametersWrap positionAbsolute
                              bottom={12}
                              right={12}>
-            <StrParam>male</StrParam>
-            <StrParam>female</StrParam>
+            <StrParam>{char.gender}</StrParam>
+            <StrParam>{char.birth_year}</StrParam>
           </StrParametersWrap>
         </GenderBox>
         <InfoBox>
-          <Name fontSize={36} color={' #FDFDFD'}>Jabba Desilijic Tiure</Name>
+          <Name fontSize={34} color={' #FDFDFD'}>{char.name}</Name>
           <AdditionalInfo>
-            <div>hair color: brown</div>
-            <div>hair color: brown</div>
-            <div>hair color: brown</div>
+            <div>hair color: {char.hair_color}</div>
+            <div>eye color: {char.eye_color}</div>
+            <div>skin color: {char.skin_color}</div>
           </AdditionalInfo>
           <NumParametersWrap>
             <NumParameterBox column
@@ -35,7 +37,7 @@ export const PopUp: FC<PopUpProps> = ({ closePopUp }) => {
                              background={'#FDFDFD'}
                              borderRadius={12}
                              centerPosition>
-              <NumParam column centerPosition>45</NumParam>
+              <NumParam column centerPosition>{char.height.length < 4 ? char.height : '-'}</NumParam>
               <span>height</span>
             </NumParameterBox>
             <NumParameterBox column
@@ -43,7 +45,7 @@ export const PopUp: FC<PopUpProps> = ({ closePopUp }) => {
                              background={'#FDFDFD'}
                              borderRadius={12}
                              centerPosition>
-              <NumParam column centerPosition>87</NumParam>
+              <NumParam column centerPosition>{char.mass.length < 4 ? char.mass : '-'}</NumParam>
               <span>mass</span>
             </NumParameterBox>
           </NumParametersWrap>

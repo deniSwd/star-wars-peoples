@@ -1,28 +1,30 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { FlexPosition } from '../micro/microStyled'
+import { CharacterType } from '../../MainTypes'
 
-type CharacterCardPorps = {
+type CharacterCardProps = {
   onCharClick: () => void
+  char: CharacterType
 }
 
-export const CharacterCard: FC<CharacterCardPorps> = ({ onCharClick }) => {
+export const CharacterCard: FC<CharacterCardProps> = ({ onCharClick, char }) => {
   return (
     <CharacterCardWrap onClick={onCharClick}>
-      <Name fontSize={18} color={' #212121'}>Jabba Desilijic Tiure</Name>
+      <Name fontSize={18} color={' #212121'}>{char.name}</Name>
       <NumParametersWrap>
         <NumParameterBox column centerPosition>
-          <NumParam column centerPosition>45</NumParam>
+          <NumParam column centerPosition>{char.height.length < 4 ? char.height : '-'}</NumParam>
           <span>height</span>
         </NumParameterBox>
         <NumParameterBox column centerPosition>
-          <NumParam column centerPosition>87</NumParam>
+          <NumParam column centerPosition>{char.mass.length < 4 ? char.mass : '-'}</NumParam>
           <span>mass</span>
         </NumParameterBox>
       </NumParametersWrap>
       <StrParametersWrap>
-        <StrParam column centerPosition>hermaphrodite</StrParam>
-        <StrParam column centerPosition>35BBY</StrParam>
+        <StrParam column centerPosition>{char.gender}</StrParam>
+        <StrParam column centerPosition>{char.birth_year}</StrParam>
       </StrParametersWrap>
     </CharacterCardWrap>
   )
