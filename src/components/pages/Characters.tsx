@@ -71,8 +71,7 @@ const CardsWrap = styled.div`
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 46px;
-  grid-column-gap: 120px;
-  margin: 0 auto;
+  grid-column-gap: 100px;
 `
 const Title = styled.div`
   font-size: 35px;

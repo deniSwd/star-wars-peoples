@@ -5,12 +5,12 @@ import { CharacterType } from '../../MainTypes'
 
 export type starWarsPeoplesState = {
   results: Array<CharacterType>
-  error: string | null
+  error: string
 }
 
 const initialState: starWarsPeoplesState = {
   results: [],
-  error: null
+  error: ''
 }
 
 export const starWarsPeoplesSlice = createSlice({

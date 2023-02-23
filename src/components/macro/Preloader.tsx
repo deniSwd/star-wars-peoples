@@ -16,6 +16,6 @@ const PreloaderWrap = styled(FlexPosition)`
   height: 100%;
 `
 const LittleYoda = styled.img `
-  width: 20vw;
-  height: 20vw;
+  width: 25vw;
+  height: 25vw;
 `
