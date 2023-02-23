@@ -1,4 +1,4 @@
-import { FC, FormEvent, useEffect, useState } from 'react'
+import { FC, FormEvent, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
 import { Content } from '../micro/microStyled'
 import { CustomSelect } from '../macro/CustomSelect'
@@ -6,7 +6,6 @@ import { CharacterCard } from '../macro/CharacterCard'
 import { PopUp } from '../macro/PopUp'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { getStarWarsPeoples, selectResults } from '../../store/slices/starWarsPeoplesSlice'
-import { CharacterType } from '../../MainTypes'
 
 export const Characters: FC = () => {
   const dispatch = useAppDispatch()
@@ -14,38 +13,39 @@ export const Characters: FC = () => {
 
   const [popUp, setPopUp] = useState(false)
   const [filterValue, setFilterValue] = useState('all')
-  const [displayCharacters, setDisplayCharacters] = useState(result)
-  const [chooseName,setChooseName] = useState('')
-
-  const charObj = Object.fromEntries(displayCharacters.map(char=>[char.name, char]))
+  const [chooseName, setChooseName] = useState('')
 
   const onSelectChange = (e: FormEvent<HTMLSelectElement>) => setFilterValue(e.currentTarget.value)
+
   const onCharCardClick = (name: string) => {
     setChooseName(name)
     setPopUp(true)
   }
 
+  const filteredResult = useMemo(() => {
+    if (filterValue === 'all') {
+      return result
+    } else {
+      return result.filter(char => char.eye_color === filterValue)
+    }
+  }, [result, filterValue])
+
+  const charObj = Object.fromEntries(filteredResult.map(char => [char.name, char]))
+
   useEffect(() => {
     dispatch(getStarWarsPeoples())
-    if (filterValue === 'all') {
-      setDisplayCharacters(result)
-    } else {
-      setDisplayCharacters(result.filter(char => char.eye_color === filterValue))
-    }
-  }, [filterValue])
+  }, [])
 
-  console.log(result)
-  console.log(displayCharacters)
   return (
     <CharactersWrap>
       {popUp && <PopUp char={charObj[chooseName]}
-        closePopUp={() => setPopUp(false)} />}
+                       closePopUp={() => setPopUp(false)} />}
       <Content column>
         <Title>{result.length} Peoples for you to choose your favorite</Title>
         <CustomSelect onChange={onSelectChange} value={filterValue} />
         <CardsWrap>
-          {displayCharacters.map(char => <CharacterCard char={char}
-                                                        onCharClick={() => onCharCardClick(char.name)} />)}
+          {filteredResult.map(char => <CharacterCard char={char}
+                                                     onCharClick={() => onCharCardClick(char.name)} />)}
         </CardsWrap>
       </Content>
     </CharactersWrap>

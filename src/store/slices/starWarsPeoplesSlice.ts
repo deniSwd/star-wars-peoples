@@ -1,6 +1,6 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 import { AppThunk, RootState } from '../store'
-import { getAllPeolple } from '../../api/peopleApi'
+import { getAllPeople } from '../../api/peopleApi'
 import { CharacterType } from '../../MainTypes'
 
 export type starWarsPeoplesState = {
@@ -34,7 +34,7 @@ export const selectError = (state: RootState) => state.starWarsPeoples.error
 export const getStarWarsPeoples = (): AppThunk =>
   async (dispatch) => {
     try {
-      const data = await getAllPeolple()
+      const data = await getAllPeople()
       dispatch(setResults(data))
     } catch (error: any) {
       //if return error
