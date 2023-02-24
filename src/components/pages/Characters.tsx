@@ -7,16 +7,25 @@ import { PopUp } from '../macro/PopUp'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { getStarWarsPeoples, selectResults } from '../../store/slices/starWarsPeoplesSlice'
 import { Preloader } from '../macro/Preloader'
+import { Paginator } from '../macro/Paginator'
 
 export const Characters: FC = () => {
   const dispatch = useAppDispatch()
   const result = useAppSelector(selectResults)
 
+  useEffect(() => {
+    dispatch(getStarWarsPeoples())
+  }, [])
+
   const [popUp, setPopUp] = useState(false)
   const [filterValue, setFilterValue] = useState('all')
   const [chooseName, setChooseName] = useState('')
+  const [page, setPage] = useState(1)
 
-  const onSelectChange = (e: FormEvent<HTMLSelectElement>) => setFilterValue(e.currentTarget.value)
+  const onSelectChange = (e: FormEvent<HTMLSelectElement>) =>{
+    setFilterValue(e.currentTarget.value)
+    setPage(1)
+  }
 
   const onCharCardClick = (name: string) => {
     setChooseName(name)
@@ -33,12 +42,13 @@ export const Characters: FC = () => {
 
   const charObj = Object.fromEntries(filteredResult.map(char => [char.name, char]))
 
-  useEffect(() => {
-    dispatch(getStarWarsPeoples())
-  }, [])
+  const itemsCount = 6
+  const pageCount = Math.ceil(filteredResult.length / itemsCount)
+  const leftPageItem = (page - 1) * itemsCount
+  const rightPageItem = page * itemsCount
 
-  if(result.length === 0) {
-    return <Preloader/>
+  if (result.length === 0) {
+    return <Preloader />
   }
 
   return (
@@ -46,12 +56,15 @@ export const Characters: FC = () => {
       {popUp && <PopUp char={charObj[chooseName]}
                        closePopUp={() => setPopUp(false)} />}
       <Content column>
-        <Title>{result.length} Peoples for you to choose your favorite</Title>
+        <Title>{filteredResult.length} Peoples for you to choose your favorite</Title>
         <CustomSelect onChange={onSelectChange} value={filterValue} />
         <CardsWrap>
-          {filteredResult.map(char => <CharacterCard char={char}
-                                                     onCharClick={() => onCharCardClick(char.name)} />)}
+          {filteredResult
+            .slice(leftPageItem, rightPageItem)
+            .map(char => <CharacterCard char={char}
+                                        onCharClick={() => onCharCardClick(char.name)} />)}
         </CardsWrap>
+        <Paginator page={page} pageCount={pageCount} setPage={setPage} />
       </Content>
     </CharactersWrap>
   )
