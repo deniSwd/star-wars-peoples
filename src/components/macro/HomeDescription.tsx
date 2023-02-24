@@ -1,15 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Button, Text } from '../micro/microStyled'
-
-const DescriptionWrap = styled.div`
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: start;
-  gap: 64px;
-  width: 40%;
-`
+import { Text } from '../micro/Text'
+import { Button } from '../micro/Button'
 
 export const HomeDescription: FC = () => {
   return (
@@ -26,3 +18,13 @@ export const HomeDescription: FC = () => {
     </DescriptionWrap>
   )
 }
+
+const DescriptionWrap = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: start;
+  gap: 64px;
+  width: 40%;
+`
+

@@ -3,7 +3,7 @@ import styled from 'styled-components'
 import { Content } from '../micro/microStyled'
 import { CustomSelect } from '../macro/CustomSelect'
 import { CharacterCard } from '../macro/CharacterCard'
-import { PopUp } from '../macro/PopUp'
+import { PopUp } from '../macro/popUp/PopUp'
 import { useAppDispatch, useAppSelector } from '../../store/hooks'
 import { getStarWarsPeoples, selectResults } from '../../store/slices/starWarsPeoplesSlice'
 import { Preloader } from '../macro/Preloader'
@@ -61,7 +61,7 @@ export const Characters: FC = () => {
         <CardsWrap>
           {filteredResult
             .slice(leftPageItem, rightPageItem)
-            .map(char => <CharacterCard char={char}
+            .map((char, i) => <CharacterCard char={char} key={i}
                                         onCharClick={() => onCharCardClick(char.name)} />)}
         </CardsWrap>
         <Paginator page={page} pageCount={pageCount} setPage={setPage} />

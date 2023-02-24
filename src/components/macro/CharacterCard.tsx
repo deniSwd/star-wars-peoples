@@ -2,9 +2,6 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { FlexPosition } from '../micro/microStyled'
 import { CharacterType } from '../../MainTypes'
-import maleImg from '../../assets/images/male.png'
-import femaleImg from '../../assets/images/female.png'
-import ufoImg from '../../assets/images/n-a.png'
 
 type CharacterCardProps = {
   onCharClick: () => void

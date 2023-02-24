@@ -1,5 +1,7 @@
 import { FC } from 'react'
-import { Button, FlexPosition, Text } from '../micro/microStyled'
+import { FlexPosition } from '../micro/microStyled'
+import {  Text } from '../micro/Text'
+import { Button } from '../micro/Button'
 import styled from 'styled-components'
 import deathStar from '../../assets/images/DeathStar.png'
 import { useAppDispatch } from '../../store/hooks'

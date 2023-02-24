@@ -1,6 +1,7 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content, Logo, NavBox, NavButton } from '../micro/microStyled'
+import { Content, Logo } from '../micro/microStyled'
+import { NavBox, NavButton } from '../micro/NavButton'
 
 export const Header: FC = () => {
   return (
