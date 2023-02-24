@@ -25,8 +25,14 @@ export const PopUp: FC<PopUpProps> = ({ closePopUp, char }) => {
           <StrParametersWrap positionAbsolute
                              bottom={12}
                              right={12}>
-            <StrParam>{char.gender}</StrParam>
-            <StrParam>{char.birth_year}</StrParam>
+            {char.gender != 'n/a' &&
+              <StrParam backColor={char.gender === 'male'
+                ? '#73D677' : char.gender === 'female'
+                  ? '#C956FF' : '#F5DB13'}>
+                {char.gender}
+              </StrParam>}
+            {char.birth_year !== 'unknown' &&
+              <StrParam backColor={'#07D6F2'}>{char.birth_year}</StrParam>}
           </StrParametersWrap>
         </GenderBox>
         <InfoBox>

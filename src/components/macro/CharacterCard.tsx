@@ -2,6 +2,9 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { FlexPosition } from '../micro/microStyled'
 import { CharacterType } from '../../MainTypes'
+import maleImg from '../../assets/images/male.png'
+import femaleImg from '../../assets/images/female.png'
+import ufoImg from '../../assets/images/n-a.png'
 
 type CharacterCardProps = {
   onCharClick: () => void
@@ -23,8 +26,13 @@ export const CharacterCard: FC<CharacterCardProps> = ({ onCharClick, char }) => 
         </NumParameterBox>
       </NumParametersWrap>
       <StrParametersWrap>
-        <StrParam column centerPosition>{char.gender}</StrParam>
-        <StrParam column centerPosition>{char.birth_year}</StrParam>
+        {char.gender !== 'n/a' &&
+          <StrParam column centerPosition
+                    backColor={char.gender === 'male'
+                      ? '#73D677' : char.gender === 'female'
+                        ? '#C956FF' : '#F5DB13'}>{char.gender}</StrParam>}
+        {char.birth_year !== 'unknown' &&
+          <StrParam column centerPosition backColor={'#07D6F2'}>{char.birth_year}</StrParam>}
       </StrParametersWrap>
     </CharacterCardWrap>
   )
@@ -94,7 +102,11 @@ export const StrParametersWrap = styled.div<StrParametersWrapProps>`
   justify-content: ${props => props.justify};
   gap: 12px;
 `
-export const StrParam = styled(FlexPosition)`
+
+type StrParamProps = {
+  backColor: string
+}
+export const StrParam = styled(FlexPosition)<StrParamProps>`
   width: auto;
   height: 16px;
   padding: 0 10px;
@@ -102,7 +114,7 @@ export const StrParam = styled(FlexPosition)`
   font-weight: 400;
   font-size: 12px;
   line-height: 14px;
-  background: #73D677;
+  background: ${props => props.backColor};
   box-shadow: inset 0px -2px 0px rgba(0, 0, 0, 0.18);
   border-radius: 11px;
 `
