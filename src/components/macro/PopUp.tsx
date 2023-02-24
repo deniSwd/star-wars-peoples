@@ -1,7 +1,9 @@
 import { FC } from 'react'
 import styled from 'styled-components'
 import { FlexPosition } from '../micro/microStyled'
-import genderImg from '../../assets/images/n-a.png'
+import femaleImg from '../../assets/images/female.png'
+import maleImg from '../../assets/images/male.png'
+import ufoImg from '../../assets/images/n-a.png'
 import { Name, NumParam, NumParameterBox, NumParametersWrap, StrParam, StrParametersWrap } from './CharacterCard'
 import { CharacterType } from '../../MainTypes'
 
@@ -10,13 +12,16 @@ type PopUpProps = {
   char: CharacterType
 }
 
-export const PopUp: FC<PopUpProps> = ({ closePopUp,char }) => {
+export const PopUp: FC<PopUpProps> = ({ closePopUp, char }) => {
   return (
     <PopUpBack>
       <PopUpWrap>
         <PopUpButton onClick={closePopUp} />
         <GenderBox centerPosition>
-          <GenderImage src={genderImg} alt={'gender'} />
+          <GenderImage src={char.gender === 'male'
+            ? maleImg : char.gender === 'female'
+              ? femaleImg : ufoImg}
+                       alt={'gender'} />
           <StrParametersWrap positionAbsolute
                              bottom={12}
                              right={12}>
@@ -131,7 +136,7 @@ const AdditionalInfo = styled.div`
   padding: 23px;
   background: #FDFDFD;
   border-radius: 8px;
-  font-family: Gilroy-Regular,sans-serif;
+  font-family: Gilroy-Regular, sans-serif;
   font-size: 16px;
   color: #000000;
   line-height: 18px;
