@@ -10,7 +10,7 @@ type CharacterCardProps = {
 
 export const CharacterCard: FC<CharacterCardProps> = ({ onCharClick, char }) => {
   return (
-    <CharacterCardWrap onClick={onCharClick}>
+    <CharacterCardWrap onClick={onCharClick} data-testid={'cardTestId'}>
       <Name fontSize={18} color={' #212121'}>{char.name}</Name>
       <NumParametersWrap>
         <NumParameterBox column centerPosition>
