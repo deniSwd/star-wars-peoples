@@ -11,19 +11,15 @@ export const FlexPosition = styled.div<PositionProps>`
   justify-content: ${(props) => props.centerPosition ? 'center' : 'space-between'};
   align-items: center;
 `
-
-export const Content = styled(FlexPosition)`
-  width: 75%;
-`
-export const Logo = styled.div`
-  width: 150px;
-  height: 90px;
-  background-image: url('/src/assets/images/Star-Wars-transparent-logo.png');
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-`
-export const YodaBox = styled.img`
-  width: 50%;
-  max-height: 100%;
+type ContentProps = {
+  changeDirection?: boolean
+}
+export const Content = styled(FlexPosition)<ContentProps>`
+  box-sizing: border-box;
+  width: 1440px;
+  padding: 0 40px;
+  @media screen and (max-width: 960px) {
+    width: 910px;
+    flex-direction: ${(props) => props.changeDirection ? 'column' : 'row'};
+  }
 `

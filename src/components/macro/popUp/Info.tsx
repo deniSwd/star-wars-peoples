@@ -21,14 +21,15 @@ export const Info: FC<InfoProps> = ({
                                     }) => {
   return (
     <InfoBox>
-      <Name fontSize={34} color={' #FDFDFD'}>{name}</Name>
+      <Name fontSize={34} color={' #FDFDFD'} inPopUp>{name}</Name>
       <AdditionalInfo>
         <div>hair color: {hairColor}</div>
         <div>eye color: {eyeColor}</div>
         <div>skin color: {skinColor}</div>
       </AdditionalInfo>
       <NumParametersWrap>
-        <NumParameterBox column
+        <NumParameterBox inPopUp
+                         column
                          width={82}
                          background={'#FDFDFD'}
                          borderRadius={12}
@@ -36,7 +37,8 @@ export const Info: FC<InfoProps> = ({
           <NumParam column centerPosition>{height.length < 4 ? height : '-'}</NumParam>
           <span>height</span>
         </NumParameterBox>
-        <NumParameterBox column
+        <NumParameterBox inPopUp
+                         column
                          width={82}
                          background={'#FDFDFD'}
                          borderRadius={12}
@@ -57,6 +59,9 @@ const InfoBox = styled.div`
   height: 100%;
   width: auto;
   padding: 30px 15px;
+  @media screen and (max-width: 540px) {
+    padding: 10px;
+  }
 `
 const AdditionalInfo = styled.div`
   padding: 23px;
@@ -66,4 +71,8 @@ const AdditionalInfo = styled.div`
   font-size: 16px;
   color: #000000;
   line-height: 18px;
+  @media screen and (max-width: 540px) {
+    padding: 10px;
+    font-size: 12px;
+  }
 `

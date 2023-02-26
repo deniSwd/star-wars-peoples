@@ -22,7 +22,7 @@ export const Characters: FC = () => {
   const [chooseName, setChooseName] = useState('')
   const [page, setPage] = useState(1)
 
-  const onSelectChange = (e: FormEvent<HTMLSelectElement>) =>{
+  const onSelectChange = (e: FormEvent<HTMLSelectElement>) => {
     setFilterValue(e.currentTarget.value)
     setPage(1)
   }
@@ -55,14 +55,14 @@ export const Characters: FC = () => {
     <CharactersWrap>
       {popUp && <PopUp char={charObj[chooseName]}
                        closePopUp={() => setPopUp(false)} />}
-      <Content column>
+      <Content column changeDirection>
         <Title>{filteredResult.length} Peoples for you to choose your favorite</Title>
         <CustomSelect onChange={onSelectChange} value={filterValue} />
         <CardsWrap>
           {filteredResult
             .slice(leftPageItem, rightPageItem)
             .map((char, i) => <CharacterCard char={char} key={i}
-                                        onCharClick={() => onCharCardClick(char.name)} />)}
+                                             onCharClick={() => onCharCardClick(char.name)} />)}
         </CardsWrap>
         <Paginator page={page} pageCount={pageCount} setPage={setPage} />
       </Content>
@@ -75,16 +75,36 @@ const CharactersWrap = styled.div`
   display: flex;
   justify-content: center;
   align-items: start;
-  height: 100%;
   width: 100%;
+  height: calc(100vh - 100px);
   background: linear-gradient(180deg, #FFFFFF 30.32%, #F5F5F5 100%);
+  @media screen and (max-width: 960px) {
+   height: fit-content;
+  }
 `
 const CardsWrap = styled.div`
   width: 100%;
+  height: content-box;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 46px;
   grid-column-gap: 100px;
+  @media screen and (max-width: 1200px) {
+    grid-column-gap: 46px;
+  }
+  @media screen and (max-width: 960px) {
+    grid-template-columns: repeat(2, 1fr);
+    grid-template-rows: repeat(3, 1fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+  }
+  @media screen and (max-width: 540px) {
+    grid-template-columns: 1fr;
+    grid-template-rows: repeat(6, 1fr);
+    grid-column-gap: 0;
+    grid-row-gap: 16px;
+    justify-items: center;
+  }
 `
 const Title = styled.div`
   font-size: 35px;
@@ -92,5 +112,17 @@ const Title = styled.div`
   font-family: Nekst-Black, sans-serif;
   color: #000000;
   text-align: center;
-  margin-top: 60px;
+  margin-top: 50px;
+  
+  @media screen and (max-width: 960px) {
+    margin-top: 30px;
+    font-size: 32px;
+    line-height: 36px;
+  }
+  @media screen and (max-width: 540px) {
+    width: 80%;
+    margin-top: 20px;
+    font-size: 24px;
+    line-height: 28px;
+  }
 `

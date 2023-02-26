@@ -36,17 +36,23 @@ export const CharacterCard: FC<CharacterCardProps> = ({ onCharClick, char }) => 
 }
 
 const CharacterCardWrap = styled.div`
-  width: 352px;
+  max-width: 352px;
+  min-width: 230px;
   height: 136px;
   background: #F0F0F0;
   border-radius: 8px;
   box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.15);
   padding: 10px 24px;
   cursor: pointer;
+  @media screen and (max-width: 960px) {
+    padding: 10px 16px;
+    min-width: 184px;
+  }
 `
 type NameProps = {
   color: string
   fontSize: number
+  inPopUp?: boolean
 }
 export const Name = styled.div<NameProps>`
   font-family: Nekst-Black, sans-serif;
@@ -55,6 +61,12 @@ export const Name = styled.div<NameProps>`
   color: ${props => props.color};
   text-shadow: 4px 4px 4px rgba(33, 33, 33, 0.1);
   letter-spacing: 2px;
+  @media screen and (max-width: 960px) {
+    letter-spacing: 0;
+  }
+  @media screen and (max-width: 540px) {
+    font-size: ${props => props.inPopUp && '22'}px;
+  }
 `
 export const NumParametersWrap = styled.div`
   display: flex;
@@ -64,6 +76,7 @@ type NumParameterBoxProps = {
   width?: number
   borderRadius?: number
   background?: string
+  inPopUp?: boolean
 }
 export const NumParameterBox = styled(FlexPosition)<NumParameterBoxProps>`
   padding: 12px 0;
@@ -74,6 +87,10 @@ export const NumParameterBox = styled(FlexPosition)<NumParameterBoxProps>`
   width: ${props => props.width}px;
   border-radius: ${props => props.borderRadius}px;
   background: ${props => props.background};
+  @media screen and (max-width: 540px) {
+    padding: ${props => props.inPopUp && '6'}px;
+    width: ${props => props.inPopUp && '60'}px;
+  }
 `
 export const NumParam = styled(FlexPosition)`
   box-sizing: border-box;
@@ -89,6 +106,7 @@ type StrParametersWrapProps = {
   positionAbsolute?: boolean
   bottom?: number
   right?: number
+  column?: boolean
 }
 
 export const StrParametersWrap = styled.div<StrParametersWrapProps>`
@@ -98,6 +116,9 @@ export const StrParametersWrap = styled.div<StrParametersWrapProps>`
   display: flex;
   justify-content: ${props => props.justify};
   gap: 12px;
+  @media screen and (max-width: 540px) {
+    flex-direction: ${props => props.column && 'column'};
+  }
 `
 
 type StrParamProps = {

@@ -1,13 +1,13 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content, YodaBox } from '../micro/microStyled'
+import { Content } from '../micro/microStyled'
 import { HomeDescription } from '../macro/HomeDescription'
 import yodaImage from '../../assets/images/BannerComplete.png'
 
 export const Home: FC = () => {
   return (
     <HomeWrap>
-      <Content>
+      <Content changeDirection>
         <HomeDescription />
         <YodaBox src={yodaImage} alt={'yoda'}/>
       </Content>
@@ -24,4 +24,19 @@ const HomeWrap = styled.div`
   width: 100%;
   background: linear-gradient(180deg, #1F2A63 0%, #17002F 100%);
 `
-
+export const YodaBox = styled.img`
+  width: 720px;
+  max-height: 100%;
+  @media screen and (max-width: 1440px) {
+    width: 600px;
+  }
+  @media screen and (max-width: 1200px) {
+    width: 480px;
+  }
+  @media screen and (max-width: 960px) {
+    width: 340px;
+  }
+  @media screen and (max-width: 540px) {
+    width: 280px
+  }
+`

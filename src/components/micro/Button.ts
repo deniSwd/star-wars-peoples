@@ -21,4 +21,9 @@ export const Button = styled(NavLink)<ButtonProps>`
   background: ${(props) => props.background};
   cursor: pointer;
   text-decoration: none;
+
+  @media screen and (max-width: 960px) {
+    width: 180px;
+    height: 54px;
+  }
 `

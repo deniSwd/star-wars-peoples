@@ -18,7 +18,8 @@ export const Gender: FC<GenderProps> = ({ gender, birthYear }) => {
         ? maleImg : gender === 'female'
           ? femaleImg : ufoImg}
                    alt={'gender'} />
-      <StrParametersWrap positionAbsolute
+      <StrParametersWrap column
+                         positionAbsolute
                          bottom={12}
                          right={12}>
         {gender !== 'n/a' &&
@@ -43,7 +44,15 @@ const GenderBox = styled(FlexPosition)`
   box-shadow: 4px 4px 8px rgba(1, 28, 64, 0.2);
   border-radius: 8px 0 0 8px;
   padding: 12px;
+  @media screen and (max-width: 960px) {
+    width: 264px;
+  }
+  @media screen and (max-width: 540px) {
+    padding: 6px;
+    width: 160px;
+  }
 `
 const GenderImage = styled.img`
   width: 100%;
+  margin-bottom: 60px;
 `

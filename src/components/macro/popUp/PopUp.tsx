@@ -45,6 +45,13 @@ const PopUpWrap = styled.div`
   background: linear-gradient(180deg, #17002F 42.19%, #1F2A63 100%);
   border-radius: 16px;
   z-index: 200;
+  @media screen and (max-width: 960px) {
+    width: 500px;
+  }
+  @media screen and (max-width: 540px) {
+    width: 360px;
+    height: 240px;
+  }
 `
 const PopUpButton = styled.button`
   position: absolute;

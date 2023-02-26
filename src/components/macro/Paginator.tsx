@@ -17,7 +17,9 @@ export const Paginator: FC<PaginatorProps> = ({ page, pageCount, setPage }) => {
                     leftButton>
         {page-1}...
       </CustomButton>
-      {page}
+      <CurrentPage>
+        {page}
+      </CurrentPage>
       <CustomButton onClick={() => {setPage(page + 1)}}
                     disabled={page >= pageCount}>
         ...{page+1}
@@ -26,16 +28,17 @@ export const Paginator: FC<PaginatorProps> = ({ page, pageCount, setPage }) => {
 }
 
 const PaginatorWrap = styled(FlexPosition)`
-  position: fixed;
-  top: 85%;
-  left: 50%;
-  translate: -50%;
-  width: 25%;
+  width: 500px;
   height: 60px;
   font-size: 30px;
   line-height: 60px;
   font-family: Nekst-Black, sans-serif;
   color: #3b405e;
+  margin: 40px 0 60px 0;
+  @media screen and (max-width: 540px) {
+    width: 380px;
+    height: 40px;
+  }
 `
 type CustomButtonProps = {
   leftButton?: boolean
@@ -62,4 +65,13 @@ const CustomButton = styled.button<CustomButtonProps>`
   &:disabled {
     opacity: 0.3;
   }
+  @media screen and (max-width: 540px) {
+    width: 140px;
+    height: 40px;
+    font-size: 20px;
+    line-height: 40px;
+  }
+`
+const CurrentPage = styled.div `
+margin: 0 10px;
 `

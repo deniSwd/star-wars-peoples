@@ -31,6 +31,12 @@ const CustomSelectWrap = styled.div`
   display: flex;
   justify-content: start;
   margin: 55px 0 30px 0;
+  @media screen and (max-width: 1200px) {
+    margin: 30px  0;
+  }
+  @media screen and (max-width: 540px) {
+    justify-content: center;
+  }
 `
 const Label = styled.label`
   font-size: 20px;
