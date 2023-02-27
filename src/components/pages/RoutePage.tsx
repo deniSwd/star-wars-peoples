@@ -15,9 +15,9 @@ export const RoutePage: FC = () => {
   return (
     <RoutePageWrap>
       <Routes>
-        <Route path='/' element={<Home/>}/>
-        <Route path='/characters' element={<Characters/>}/>
-        <Route path='*' element={<ErrorPage/>}/>
+        <Route path='/' element={<Home />} />
+        <Route path='/characters' element={<Characters />} />
+        <Route path='*' element={<ErrorPage />} />
       </Routes>
     </RoutePageWrap>
   )

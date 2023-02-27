@@ -1,12 +1,12 @@
-import { ComponentProps, FC, FormEvent, useState } from 'react'
+import { FC, FormEvent } from 'react'
 import styled from 'styled-components'
 
 interface CustomSelectProps {
-  onChange: (e: FormEvent<HTMLSelectElement>)=>void
-  value:string
+  onChange: (e: FormEvent<HTMLSelectElement>) => void
+  value: string
 }
 
-export const CustomSelect: FC<CustomSelectProps> = ({ onChange,value}) => {
+export const CustomSelect: FC<CustomSelectProps> = ({ onChange, value }) => {
 
   return (
     <CustomSelectWrap>
@@ -32,7 +32,7 @@ const CustomSelectWrap = styled.div`
   justify-content: start;
   margin: 55px 0 30px 0;
   @media screen and (max-width: 1200px) {
-    margin: 30px  0;
+    margin: 30px 0;
   }
   @media screen and (max-width: 540px) {
     justify-content: center;
@@ -57,7 +57,7 @@ const Select = styled.select`
   box-shadow: inset 0px -9px 0px rgba(0, 0, 0, 0.18);
   cursor: pointer;
 `
-const Option = styled.option `
+const Option = styled.option`
   font-size: 20px;
   color: #212121;
   background: #ffffff;

@@ -2,7 +2,7 @@ import styled from 'styled-components'
 
 interface PositionProps {
   centerPosition?: boolean
-  column?:boolean
+  column?: boolean
 }
 
 export const FlexPosition = styled.div<PositionProps>`

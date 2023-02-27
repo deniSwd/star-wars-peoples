@@ -3,8 +3,9 @@ import { CharacterType, StarWarsPeople } from '../MainTypes'
 const baseUrl = 'https://swapi.dev/api/people/'
 const data = <T extends object>(res: Response): Promise<T> => res.json()
 export const api = (url: string, init?: RequestInit) => fetch(new URL(url, baseUrl), init)
+//Получаем первую страницу с персонажами
 export const getPeoples = (page: number = 1) => api(`?page=${page}`).then(data<StarWarsPeople>)
-
+//Собираем данные со всех страниц в один массив
 export const getAllPeople = async () => {
   const allPeople = []
   const { count } = await getPeoples(1)

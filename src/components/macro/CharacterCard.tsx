@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { FlexPosition } from '../micro/microStyled'
+import { FlexPosition } from '../micro/LayoutStyled'
 import { CharacterType } from '../../MainTypes'
 
 type CharacterCardProps = {
@@ -44,6 +44,9 @@ const CharacterCardWrap = styled.div`
   box-shadow: 3px 3px 5px 3px rgba(0, 0, 0, 0.15);
   padding: 10px 24px;
   cursor: pointer;
+  @media screen and (max-width: 1200px) {
+    padding: 10px 20px;
+  }
   @media screen and (max-width: 960px) {
     padding: 10px 16px;
     min-width: 184px;

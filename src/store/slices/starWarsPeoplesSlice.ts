@@ -17,7 +17,7 @@ export const starWarsPeoplesSlice = createSlice({
   name: 'starWarsPeoples',
   initialState,
   reducers: {
-    setResults: (state, action: PayloadAction< Array<CharacterType>>) => {
+    setResults: (state, action: PayloadAction<Array<CharacterType>>) => {
       state.results = action.payload
     },
     setError: (state, action: PayloadAction<string>) => {
@@ -30,14 +30,14 @@ export const { setResults, setError } = starWarsPeoplesSlice.actions
 
 export const selectResults = (state: RootState) => state.starWarsPeoples.results
 export const selectError = (state: RootState) => state.starWarsPeoples.error
-
+//Получаем информацию о всех персонажах и сохраняем в стейт
 export const getStarWarsPeoples = (): AppThunk =>
   async (dispatch) => {
     try {
       const data = await getAllPeople()
       dispatch(setResults(data))
     } catch (error: any) {
-      //if return error
+      //если вернулась ошибка
       dispatch(setError(error.message))
     }
   }

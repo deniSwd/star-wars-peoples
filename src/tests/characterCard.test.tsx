@@ -1,8 +1,8 @@
-import * as hooks from '../src/store/hooks'
-import { RootState } from '../src/store/store'
-import { render, screen } from '../setupTests'
-import { Characters } from '../src/components/pages/Characters'
-import { CharacterCard } from '../src/components/macro/CharacterCard'
+import * as hooks from '../store/hooks'
+import { RootState } from '../store/store'
+import { render, screen } from '../../setupTests'
+import { Characters } from '../components/pages/Characters'
+import { CharacterCard } from '../components/macro/CharacterCard'
 
 describe('character', () => {
   const useDispatchSpy = vi.spyOn(hooks, 'useAppDispatch')
@@ -46,11 +46,12 @@ describe('character', () => {
     }
   }
   useSelectorSpy.mockImplementation(selector => selector(mockStore))
-
+//Проверяем наличие карточки персонажа на странице
   test('have a card', () => {
     render(<Characters />)
     expect(screen.getByTestId('cardTestId')).toBeInTheDocument()
   })
+  //Проверяем наличие данных в карточке персонажа
   test('info', () => {
     render(<CharacterCard char={mockStore.starWarsPeoples.results[0]}
                           onCharClick={() => alert('yes')} />)
@@ -60,6 +61,7 @@ describe('character', () => {
     expect(screen.getByText(/19BBY/i)).toBeInTheDocument()
     expect(screen.getByText(/male/i)).toBeInTheDocument()
   })
+  //Проверяем соответствие стилей заданию
   test('gender,birth_year color', () => {
     render(<CharacterCard char={mockStore.starWarsPeoples.results[0]}
                           onCharClick={() => alert('yes')} />)

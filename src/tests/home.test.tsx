@@ -1,12 +1,12 @@
-import { render, screen } from '../setupTests'
+import { render, screen } from '../../setupTests'
 import { MemoryRouter } from 'react-router-dom'
 import { Provider } from 'react-redux'
-import { store } from '../src/store/store'
-import { Home } from '../src/components/pages/Home'
+import { store } from '../store/store'
+import { Home } from '../components/pages/Home'
 
 describe('character', () => {
+  //Проверяем наличие кнопки на главной странице
   test('link', () => {
-
     render(<MemoryRouter>
       <Provider store={store}>
         <Home />

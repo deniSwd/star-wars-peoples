@@ -8,14 +8,14 @@ import { ErrorPage } from './ErrorPage'
 
 export const App: FC = () => {
   const errorMessage = useAppSelector(selectError)
-
-  if(errorMessage.length>0) {
-  return <ErrorPage/>
-}
+//Если запрос выпонился с ошибкой показываем страницу 404
+  if (errorMessage.length > 0) {
+    return <ErrorPage />
+  }
   return (
     <AppWrap>
       <Header />
-      <RoutePage/>
+      <RoutePage />
     </AppWrap>
   )
 }

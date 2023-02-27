@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content } from '../micro/microStyled'
+import { Content } from '../micro/LayoutStyled'
 import { NavBox, NavButton } from '../micro/NavButton'
 
 export const Header: FC = () => {

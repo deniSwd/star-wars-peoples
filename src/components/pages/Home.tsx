@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { Content } from '../micro/microStyled'
+import { Content } from '../micro/LayoutStyled'
 import { HomeDescription } from '../macro/HomeDescription'
 import yodaImage from '../../assets/images/BannerComplete.png'
 
@@ -9,7 +9,7 @@ export const Home: FC = () => {
     <HomeWrap>
       <Content changeDirection>
         <HomeDescription />
-        <YodaBox src={yodaImage} alt={'yoda'}/>
+        <YodaBox src={yodaImage} alt={'yoda'} />
       </Content>
     </HomeWrap>
   )

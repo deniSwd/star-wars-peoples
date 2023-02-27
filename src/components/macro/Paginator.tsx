@@ -1,6 +1,6 @@
 import { FC } from 'react'
 import styled from 'styled-components'
-import { FlexPosition } from '../micro/microStyled'
+import { FlexPosition } from '../micro/LayoutStyled'
 
 type PaginatorProps = {
   page: number
@@ -35,8 +35,12 @@ const PaginatorWrap = styled(FlexPosition)`
   font-family: Nekst-Black, sans-serif;
   color: #3b405e;
   margin: 40px 0 60px 0;
-  @media screen and (max-width: 540px) {
+  @media screen and (max-width: 960px) {
     width: 380px;
+    height: 40px;
+  }
+  @media screen and (max-width: 540px) {
+    width: 350px;
     height: 40px;
   }
 `
@@ -64,6 +68,9 @@ const CustomButton = styled.button<CustomButtonProps>`
   
   &:disabled {
     opacity: 0.3;
+  }
+  @media screen and (max-width: 960px) {
+    width: 160px;
   }
   @media screen and (max-width: 540px) {
     width: 140px;

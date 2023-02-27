@@ -1,6 +1,6 @@
 import { FC, FormEvent, useEffect, useMemo, useState } from 'react'
 import styled from 'styled-components'
-import { Content } from '../micro/microStyled'
+import { Content } from '../micro/LayoutStyled'
 import { CustomSelect } from '../macro/CustomSelect'
 import { CharacterCard } from '../macro/CharacterCard'
 import { PopUp } from '../macro/popUp/PopUp'
@@ -12,7 +12,7 @@ import { Paginator } from '../macro/Paginator'
 export const Characters: FC = () => {
   const dispatch = useAppDispatch()
   const result = useAppSelector(selectResults)
-
+// При первом рендеринге получаем всех персонажей
   useEffect(() => {
     dispatch(getStarWarsPeoples())
   }, [])
@@ -21,17 +21,18 @@ export const Characters: FC = () => {
   const [filterValue, setFilterValue] = useState('all')
   const [chooseName, setChooseName] = useState('')
   const [page, setPage] = useState(1)
-
+//При изменении значения  в селект устанавливаем значение фильтра и возвращаемся на первую страницу
   const onSelectChange = (e: FormEvent<HTMLSelectElement>) => {
     setFilterValue(e.currentTarget.value)
     setPage(1)
   }
-
+//При клике на карточку персонажа, устанавливаем имя по которому ищем персонажа
+// и открываем окно с информацией о нем
   const onCharCardClick = (name: string) => {
     setChooseName(name)
     setPopUp(true)
   }
-
+//Выбираем персонажей в соответствии с значением фильтра
   const filteredResult = useMemo(() => {
     if (filterValue === 'all') {
       return result
@@ -39,14 +40,14 @@ export const Characters: FC = () => {
       return result.filter(char => char.eye_color === filterValue)
     }
   }, [result, filterValue])
-
+//Формируем объект с ключем "Имя персонажа" и значением с информацией о нем
   const charObj = Object.fromEntries(filteredResult.map(char => [char.name, char]))
-
+//Рассчет для постраничного вывода карточек
   const itemsCount = 6
   const pageCount = Math.ceil(filteredResult.length / itemsCount)
   const leftPageItem = (page - 1) * itemsCount
   const rightPageItem = page * itemsCount
-
+//Пока получаем данные показываем иконку загрузки
   if (result.length === 0) {
     return <Preloader />
   }
@@ -79,23 +80,24 @@ const CharactersWrap = styled.div`
   height: calc(100vh - 100px);
   background: linear-gradient(180deg, #FFFFFF 30.32%, #F5F5F5 100%);
   @media screen and (max-width: 960px) {
-   height: fit-content;
+    height: fit-content;
   }
 `
 const CardsWrap = styled.div`
   width: 100%;
   height: content-box;
+  min-height: 380px;
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   grid-row-gap: 46px;
   grid-column-gap: 100px;
   @media screen and (max-width: 1200px) {
-    grid-column-gap: 46px;
+    grid-column-gap: 26px;
   }
   @media screen and (max-width: 960px) {
     grid-template-columns: repeat(2, 1fr);
     grid-template-rows: repeat(3, 1fr);
-    grid-column-gap: 20px;
+    grid-column-gap: 12px;
     grid-row-gap: 20px;
   }
   @media screen and (max-width: 540px) {
@@ -113,7 +115,7 @@ const Title = styled.div`
   color: #000000;
   text-align: center;
   margin-top: 50px;
-  
+
   @media screen and (max-width: 960px) {
     margin-top: 30px;
     font-size: 32px;

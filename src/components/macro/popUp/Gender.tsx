@@ -4,7 +4,7 @@ import femaleImg from '../../../assets/images/female.png'
 import ufoImg from '../../../assets/images/n-a.png'
 import { StrParam, StrParametersWrap } from '../CharacterCard'
 import styled from 'styled-components'
-import { FlexPosition } from '../../micro/microStyled'
+import { FlexPosition } from '../../micro/LayoutStyled'
 
 type GenderProps = {
   gender: string
@@ -54,5 +54,7 @@ const GenderBox = styled(FlexPosition)`
 `
 const GenderImage = styled.img`
   width: 100%;
-  margin-bottom: 60px;
+  @media screen and (max-width: 540px) {
+    margin-bottom: 60px;
+  }
 `

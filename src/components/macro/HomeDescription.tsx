@@ -53,20 +53,20 @@ const TitleText = styled.div`
     line-height: 38px;
   }
 `
- const Text = styled.div`
+const Text = styled.div`
   width: 100%;
   font-size: 32px;
   font-family: Gilroy-Regular, sans-serif;
   color: #FFFFFF;
   line-height: 36px;
-   @media screen and (max-width: 1200px) {
-     font-size: 28px;
-     line-height: 32px;
-   }
-   @media screen and (max-width: 960px) {
-     text-align: center;
-     font-size: 20px;
-     line-height: 24px;
-   }
+  @media screen and (max-width: 1200px) {
+    font-size: 28px;
+    line-height: 32px;
+  }
+  @media screen and (max-width: 960px) {
+    text-align: center;
+    font-size: 20px;
+    line-height: 24px;
+  }
 `
 
