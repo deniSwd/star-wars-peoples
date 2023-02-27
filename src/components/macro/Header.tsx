@@ -2,6 +2,7 @@ import { FC } from 'react'
 import styled from 'styled-components'
 import { Content } from '../micro/LayoutStyled'
 import { NavBox, NavButton } from '../micro/NavButton'
+import logo from '../../assets/images/logo.png'
 
 export const Header: FC = () => {
   return (
@@ -29,7 +30,7 @@ const HeaderWrap = styled.header`
 export const Logo = styled.div`
   width: 150px;
   height: 90px;
-  background-image: url('/src/assets/images/logo.png');
+  background-image: url(${logo});
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
