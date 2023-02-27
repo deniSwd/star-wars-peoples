@@ -29,7 +29,7 @@ const HeaderWrap = styled.header`
 export const Logo = styled.div`
   width: 150px;
   height: 90px;
-  background-image: url('/src/assets/images/Star-Wars-transparent-logo.png');
+  background-image: url('/src/assets/images/logo.png');
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
